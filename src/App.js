@@ -30,7 +30,7 @@ function App() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const date = new Date();
-  const APIkey = "bcf2048bc3be154bded8f277f580ba2e";
+  const APIkey = "8f80eaaf3a80a46e0aef2c9c9d5468d2";
   let icon;
 
   const handleSearch = (e) => {
