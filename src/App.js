@@ -66,7 +66,7 @@ function App() {
       const response = await fetch(API);
       if (response.ok) {
         let data = await response.json();
-        const FEATURED_APITime = `http://api.timezonedb.com/v2.1/get-time-zone?key=XR4MCKPS4TRB&format=json&by=position&lat=${data.coord.lat}&lng=${data.coord.lon}`;
+        const FEATURED_APITime = `https://api.timezonedb.com/v2.1/get-time-zone?key=XR4MCKPS4TRB&format=json&by=position&lat=${data.coord.lat}&lng=${data.coord.lon}`;
         setData(data);
         getDataTime(FEATURED_APITime);
       }
