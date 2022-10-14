@@ -44,6 +44,7 @@ function App() {
     }
     if (inputValue === "") {
       setAnimate(true);
+      setErrorMsg("Please enter a city name");
       setTimeout(() => {
         setAnimate(false);
       }, 500);
@@ -65,7 +66,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setErrorMsg("");
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [errorMsg]);
 
