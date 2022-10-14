@@ -6,8 +6,6 @@ import {
   IoMdSnow,
   IoMdThunderstorm,
   IoMdSearch,
-  IoMdArrowRoundUp,
-  IoMdArrowRoundDown,
 } from "react-icons/io";
 import {
   BsCloudHaze2Fill,
@@ -50,6 +48,7 @@ function App() {
       }, 500);
     }
     setLoading(true);
+    setInputValue("");
     setTimeout(() => {
       setLoading(false);
     }, 500);
@@ -58,7 +57,7 @@ function App() {
     input.value = "";
   };
 
-  useEffect(() => {
+  useEffect(() => {       
     const FEATURED_API = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}`;
     getData(FEATURED_API);
   }, [location]);
@@ -212,26 +211,6 @@ function App() {
                     </div>
                     <div className="flex ml-2">
                       {`Wind: ${data.wind.speed} m/s`}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-x-2">
-                    <div className="icon-visibility text-xl">
-                      <IoMdArrowRoundUp />
-                    </div>
-                    <div className="flex ml-2">
-                      {`Max: ${parseInt(data.main.temp_max)}`}{" "}
-                      <TbTemperatureCelsius />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <div className="icon text-xl">
-                      <IoMdArrowRoundDown />
-                    </div>
-                    <div className="flex ml-2">
-                      {`Min: ${parseInt(data.main.temp_min)}`}{" "}
-                      <TbTemperatureCelsius />
                     </div>
                   </div>
                 </div>
