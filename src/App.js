@@ -22,14 +22,15 @@ import { ImSpinner8 } from "react-icons/im";
 function App() {
   const [location, setLocation] = useState("Moncton");
   const [data, setData] = useState(null);
+  const [dataTime, setDataTime] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [animate, setAnimate] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const date = new Date();
   const APIkey = "8f80eaaf3a80a46e0aef2c9c9d5468d2";
   let icon;
+  let moth;
 
   const handleSearch = (e) => {
     setInputValue(e.target.value);
@@ -57,8 +58,23 @@ function App() {
     input.value = "";
   };
 
-  useEffect(() => {       
-    const FEATURED_API = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}`;
+  useEffect(() => {
+    let lang = "en";
+    const FEATURED_API = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}&lang=${lang}`;
+
+    async function getData(API) {
+      const response = await fetch(API);
+      if (response.ok) {
+        let data = await response.json();
+        const FEATURED_APITime = `http://api.timezonedb.com/v2.1/get-time-zone?key=XR4MCKPS4TRB&format=json&by=position&lat=${data.coord.lat}&lng=${data.coord.lon}`;
+        setData(data);
+        getDataTime(FEATURED_APITime);
+      }
+      if (!response.ok) {
+        setErrorMsg("City not found");
+      }
+    }
+
     getData(FEATURED_API);
   }, [location]);
 
@@ -69,11 +85,25 @@ function App() {
     return () => clearTimeout(timer);
   }, [errorMsg]);
 
-  async function getData(API) {
+  async function getDataTime(API) {
     const response = await fetch(API);
     if (response.ok) {
       let data = await response.json();
-      setData(data);
+      let time = {
+        year: data.formatted.slice(0, 4),
+        month: data.formatted.slice(5, 7),
+        day: data.formatted.slice(8, 10),
+        hour: data.formatted.slice(11, 13),
+        minute: data.formatted.slice(14, 16),
+        countryName: data.countryName,
+      };
+      if (time.hour > 12) {
+        time.hour = time.hour - 12;
+        time.meridiem = "PM";
+      } else {
+        time.meridiem = "AM";
+      }
+      setDataTime(time);
     }
     if (!response.ok) {
       setErrorMsg("City not found");
@@ -81,12 +111,53 @@ function App() {
   }
 
   // if data is false, return loading
-  if (!data) {
+  if (!data || !dataTime) {
     return (
       <div className="loading w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center">
         <ImSpinner8 className="loading-icon text-5xl animate-spin text-white" />
       </div>
     );
+  }
+  // set the month base on the number
+  switch (dataTime.month) {
+    case "01":
+      moth = "January";
+      break;
+    case "02":
+      moth = "February";
+      break;
+    case "03":
+      moth = "March";
+      break;
+    case "04":
+      moth = "April";
+      break;
+    case "05":
+      moth = "May";
+      break;
+    case "06":
+      moth = "June";
+      break;
+    case "07":
+      moth = "July";
+      break;
+    case "08":
+      moth = "August";
+      break;
+    case "09":
+      moth = "September";
+      break;
+    case "10":
+      moth = "October";
+      break;
+    case "11":
+      moth = "November";
+      break;
+    case "12":
+      moth = "December";
+      break;
+    default:
+      moth = dataTime.month;
   }
 
   // set the icon based on the weather
@@ -157,10 +228,9 @@ function App() {
               <div className="card-top flex items-center gap-x-5">
                 <div className="icon text-8xl">{icon}</div>
                 <div className="flex-col">
-                  <div className="city text-2xl font-semibold">{`${data.name}, ${data.sys.country}`}</div>
-                  <div className="date">{`${date.getUTCDate()}/${
-                    date.getUTCMonth() + 1
-                  }/${date.getUTCFullYear()}`}</div>
+                  <div className="city text-2xl font-bold">{`${data.name}, ${dataTime.countryName}`}</div>
+                  <div className="date text-md font-semibold">{`${moth} ${dataTime.day}, ${dataTime.year}`}</div>
+                  <div className="time text-md font-semibold">{`${dataTime.hour}:${dataTime.minute} ${dataTime.meridiem} `}</div>
                 </div>
               </div>
 
