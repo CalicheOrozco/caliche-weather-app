@@ -234,7 +234,7 @@ function App() {
         <form
           className={`${
             animate ? "animate-shake" : "animate-none"
-          } h-16 bg-slate-600/30  w-full max-w-[450px]
+          } h-16 bg-slate-600/50  w-full max-w-[450px]
           rounded-full backdrop-blur-1xl mb-8`}
         >
           <div className=" h-full relative flex items-center justify-between p-2">
@@ -253,7 +253,7 @@ function App() {
           </div>
         </form>
         {/* Card */}
-        <div className="card w-full max-w-[450px] min-h-[584px] bg-slate-600/20 text-white backdrop-blur-1xl rounded-3xl py-12 px-6">
+        <div className="card w-full max-w-[450px] min-h-[584px] bg-slate-600/50 text-white backdrop-blur-1xl rounded-3xl py-12 px-6">
           {loading ? (
             <div className="w-full h-full flex justify-center items-center">
               <ImSpinner8 className="loading-icon text-white text-5xl animate-spin" />
