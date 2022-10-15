@@ -173,7 +173,7 @@ function App() {
   // set the background based on the weather
   switch (data.weather[0].main) {
     case "Clouds":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = cloudsDay;
       } else {
         backgroundName = cloudsNight;
@@ -183,28 +183,28 @@ function App() {
       backgroundName = hazeDay;
       break;
     case "Rain":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = rainDay;
       } else {
         backgroundName = rainNight;
       }
       break;
     case "Clear":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = clearDay;
       } else {
         backgroundName = clearNight;
       }
       break;
     case "Drizzle":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = rainDay;
       } else {
         backgroundName = rainNight;
       }
       break;
     case "Snow":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = snowDay;
       } else {
         backgroundName = snowNight;
@@ -214,7 +214,7 @@ function App() {
       backgroundName = thunderstorm;
       break;
     default:
-      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = cloudsDay;
       } else {
         backgroundName = cloudsNight;
@@ -242,7 +242,7 @@ function App() {
               onChange={(e) => handleSearch(e)}
               className="flex-1 bg-transparent outline-none placeholder:text-white text-white text-base font-light pl-6 h-full"
               type="text"
-              placeholder="Search by city or country"
+              placeholder="Search by city"
             />
             <button
               onClick={(e) => handleSubmit(e)}
@@ -262,7 +262,7 @@ function App() {
             <>
               {/* Card top */}
               <div className="card-top flex items-center gap-x-5">
-                <div className="icon w-1/2"><img src={`https://countryflagsapi.com/png/${icon}`} alt="Country flag"/></div>
+                <div className="icon w-1/2 shadow-2xl"><img src={`https://countryflagsapi.com/png/${icon}`} alt="Country flag"/></div>
                 <div className="flex-col">
                   <div className="city text-2xl font-bold">{`${data.name}, ${dataTime.countryName}`}</div>
                   <div className="date text-md font-semibold">{`${moth} ${dataTime.day}, ${dataTime.year}`}</div>
