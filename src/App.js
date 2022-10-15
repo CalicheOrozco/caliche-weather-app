@@ -18,6 +18,16 @@ import {
 
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { ImSpinner8 } from "react-icons/im";
+import cloudsDay from "./assets/videos/cloudsDay.mp4";
+import cloudsNight from "./assets/videos/cloudsNight.mp4";
+import hazeDay from "./assets/videos/hazeDay.mp4";
+import rainDay from "./assets/videos/rainDay.mp4";
+import rainNight from "./assets/videos/rainNight.mp4";
+import clearDay from "./assets/videos/clearDay.mp4";
+import clearNight from "./assets/videos/clearNight.mp4";
+import snowDay from "./assets/videos/snowDay.mp4";
+import snowNight from "./assets/videos/snowNight.mp4";
+import thunderstorm from "./assets/videos/thunderstorm.mp4";
 
 function App() {
   const [location, setLocation] = useState("Moncton");
@@ -30,6 +40,7 @@ function App() {
 
   const APIkey = "8f80eaaf3a80a46e0aef2c9c9d5468d2";
   let icon;
+  let backgroundName;
   let moth;
 
   const handleSearch = (e) => {
@@ -164,37 +175,66 @@ function App() {
   switch (data.weather[0].main) {
     case "Clouds":
       icon = <IoMdCloudy />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = cloudsDay;
+      } else {
+        backgroundName = cloudsNight;
+      }
       break;
     case "Haze":
       icon = <BsCloudHaze2Fill />;
+      backgroundName = hazeDay;
       break;
     case "Rain":
       icon = <IoMdRainy className="text-[#31cafb]" />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = rainDay;
+      } else {
+        backgroundName = rainNight;
+      }
       break;
     case "Clear":
       icon = <IoMdSunny className="text-[#ffde33]" />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = clearDay;
+      } else {
+        backgroundName = clearNight;
+      }
       break;
     case "Drizzle":
       icon = <BsCloudDrizzleFill className="text-[#31cafb]" />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = rainDay;
+      } else {
+        backgroundName = rainNight;
+      }
       break;
     case "Snow":
       icon = <IoMdSnow className="text-[#31cafb]" />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = snowDay;
+      } else {
+        backgroundName = snowNight;
+      }
       break;
     case "Thunderstorm":
       icon = <IoMdThunderstorm />;
+      backgroundName = thunderstorm;
       break;
     default:
       icon = <IoMdCloudy />;
   }
   return (
     <div className="App">
-      <div className="w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center px-4 lg:px-0">
+      <div className="w-full h-screen flex flex-col items-center justify-center lg:px-0">
+      <video className="w-full h-full object-cover" src={backgroundName} autoPlay loop muted/>
         {errorMsg && (
           <div className="text-white w-full max-w-[90vw] lg:max-w-[450px] bg-[#ff208c] p-4 capitalize rounded-md">
             {errorMsg}
           </div>
         )}
-        {/* Form */}
+        <div className="absolute w-full h-screen flex flex-col items-center justify-center px-4 lg:px-0">
+          {/* Form */}
         <form
           className={`${
             animate ? "animate-shake" : "animate-none"
@@ -287,6 +327,7 @@ function App() {
               </div>
             </>
           )}
+        </div>
         </div>
       </div>
     </div>
