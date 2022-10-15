@@ -8,8 +8,6 @@ import {
   IoMdSearch,
 } from "react-icons/io";
 import {
-  BsCloudHaze2Fill,
-  BsCloudDrizzleFill,
   BsEye,
   BsWater,
   BsThermometer,
@@ -85,7 +83,7 @@ function App() {
         setErrorMsg("City not found");
       }
     }
-
+    
     getData(FEATURED_API);
   }, [location]);
 
@@ -129,6 +127,7 @@ function App() {
       </div>
     );
   }
+  icon = data.sys.country
   // set the month base on the number
   switch (dataTime.month) {
     case "01":
@@ -171,10 +170,9 @@ function App() {
       moth = dataTime.month;
   }
 
-  // set the icon based on the weather
+  // set the background based on the weather
   switch (data.weather[0].main) {
     case "Clouds":
-      icon = <IoMdCloudy />;
       if (dataTime.meridiem === "AM") {
         backgroundName = cloudsDay;
       } else {
@@ -182,11 +180,9 @@ function App() {
       }
       break;
     case "Haze":
-      icon = <BsCloudHaze2Fill />;
       backgroundName = hazeDay;
       break;
     case "Rain":
-      icon = <IoMdRainy className="text-[#31cafb]" />;
       if (dataTime.meridiem === "AM") {
         backgroundName = rainDay;
       } else {
@@ -194,7 +190,6 @@ function App() {
       }
       break;
     case "Clear":
-      icon = <IoMdSunny className="text-[#ffde33]" />;
       if (dataTime.meridiem === "AM") {
         backgroundName = clearDay;
       } else {
@@ -202,7 +197,6 @@ function App() {
       }
       break;
     case "Drizzle":
-      icon = <BsCloudDrizzleFill className="text-[#31cafb]" />;
       if (dataTime.meridiem === "AM") {
         backgroundName = rainDay;
       } else {
@@ -210,7 +204,6 @@ function App() {
       }
       break;
     case "Snow":
-      icon = <IoMdSnow className="text-[#31cafb]" />;
       if (dataTime.meridiem === "AM") {
         backgroundName = snowDay;
       } else {
@@ -218,11 +211,14 @@ function App() {
       }
       break;
     case "Thunderstorm":
-      icon = <IoMdThunderstorm />;
       backgroundName = thunderstorm;
       break;
     default:
-      icon = <IoMdCloudy />;
+      if (dataTime.meridiem === "AM") {
+        backgroundName = cloudsDay;
+      } else {
+        backgroundName = cloudsNight;
+      }
   }
   return (
     <div className="App">
@@ -266,7 +262,7 @@ function App() {
             <>
               {/* Card top */}
               <div className="card-top flex items-center gap-x-5">
-                <div className="icon text-8xl">{icon}</div>
+                <div className="icon w-1/2"><img src={`https://countryflagsapi.com/png/${icon}`} alt="Country flag"/></div>
                 <div className="flex-col">
                   <div className="city text-2xl font-bold">{`${data.name}, ${dataTime.countryName}`}</div>
                   <div className="date text-md font-semibold">{`${moth} ${dataTime.day}, ${dataTime.year}`}</div>
