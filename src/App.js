@@ -242,7 +242,7 @@ function App() {
               onChange={(e) => handleSearch(e)}
               className="flex-1 bg-transparent outline-none placeholder:text-white text-white text-base font-light pl-6 h-full"
               type="text"
-              placeholder="Search by city"
+              placeholder="Search by city..."
             />
             <button
               onClick={(e) => handleSubmit(e)}
