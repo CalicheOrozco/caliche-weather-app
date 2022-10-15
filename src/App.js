@@ -173,7 +173,7 @@ function App() {
   // set the background based on the weather
   switch (data.weather[0].main) {
     case "Clouds":
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = cloudsDay;
       } else {
         backgroundName = cloudsNight;
@@ -183,28 +183,28 @@ function App() {
       backgroundName = hazeDay;
       break;
     case "Rain":
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = rainDay;
       } else {
         backgroundName = rainNight;
       }
       break;
     case "Clear":
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = clearDay;
       } else {
         backgroundName = clearNight;
       }
       break;
     case "Drizzle":
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = rainDay;
       } else {
         backgroundName = rainNight;
       }
       break;
     case "Snow":
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = snowDay;
       } else {
         backgroundName = snowNight;
@@ -214,7 +214,7 @@ function App() {
       backgroundName = thunderstorm;
       break;
     default:
-      if (dataTime.meridiem === "AM") {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6) {
         backgroundName = cloudsDay;
       } else {
         backgroundName = cloudsNight;
@@ -234,7 +234,7 @@ function App() {
         <form
           className={`${
             animate ? "animate-shake" : "animate-none"
-          } h-16 bg-black/30 w-full max-w-[450px]
+          } h-16 bg-slate-600/30  w-full max-w-[450px]
           rounded-full backdrop-blur-1xl mb-8`}
         >
           <div className=" h-full relative flex items-center justify-between p-2">
@@ -253,7 +253,7 @@ function App() {
           </div>
         </form>
         {/* Card */}
-        <div className="card w-full max-w-[450px] min-h-[584px] bg-black/20 text-white backdrop-blur-1xl rounded-3xl py-12 px-6">
+        <div className="card w-full max-w-[450px] min-h-[584px] bg-slate-600/20 text-white backdrop-blur-1xl rounded-3xl py-12 px-6">
           {loading ? (
             <div className="w-full h-full flex justify-center items-center">
               <ImSpinner8 className="loading-icon text-white text-5xl animate-spin" />
