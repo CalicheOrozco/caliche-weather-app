@@ -241,7 +241,7 @@ function App() {
   return (
     <div className="App">
       <div className="w-full min-h-screen flex flex-col items-center justify-center lg:px-0">
-      <video className="w-full min-h-full object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
+      <video className="w-full min-h-screen object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
         <div className="absolute w-full min-h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         {errorMsg && (
           <div className="text-white w-full max-w-[90vw] lg:max-w-[450px] bg-[#ff208c] p-4 capitalize rounded-md">
