@@ -122,7 +122,7 @@ function App() {
   // if data is false, return loading
   if (!data || !dataTime) {
     return (
-      <div className="loading w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center">
+      <div className="loading w-full min-h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center">
         <ImSpinner8 className="loading-icon text-5xl animate-spin text-white" />
       </div>
     );
@@ -241,8 +241,8 @@ function App() {
   return (
     <div className="App">
       <div className="w-full min-h-screen flex flex-col items-center justify-center lg:px-0">
-      <video className="w-full h-full object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
-        <div className="absolute w-full h-screen flex flex-col items-center justify-center px-4 lg:px-0">
+      <video className="w-full min-h-full object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
+        <div className="absolute w-full min-h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         {errorMsg && (
           <div className="text-white w-full max-w-[90vw] lg:max-w-[450px] bg-[#ff208c] p-4 capitalize rounded-md">
             {errorMsg}
@@ -255,10 +255,10 @@ function App() {
           } h-16 bg-slate-600/50  w-full max-w-[450px]
           rounded-full backdrop-blur-1xl mb-8`}
         >
-          <div className=" h-full relative flex items-center justify-between p-2">
+          <div className=" min-h-full relative flex items-center justify-between p-2">
             <input
               onChange={(e) => handleSearch(e)}
-              className="flex-1 bg-transparent outline-none placeholder:text-white text-white text-base font-light pl-6 h-full"
+              className="flex-1 bg-transparent outline-none placeholder:text-white text-white text-base font-light pl-6 min-h-full"
               type="text"
               placeholder="Search by city..."
             />
@@ -273,7 +273,7 @@ function App() {
         {/* Card */}
         <div className="card w-full max-w-[450px] min-h-[584px] bg-slate-600/50 text-white backdrop-blur-1xl rounded-3xl py-12 px-6">
           {loading ? (
-            <div className="w-full h-full flex justify-center items-center">
+            <div className="w-full min-h-full flex justify-center items-center">
               <ImSpinner8 className="loading-icon text-white text-5xl animate-spin" />
             </div>
           ) : (
