@@ -173,10 +173,13 @@ function App() {
   // set the background based on the weather
   switch (data.weather[0].main) {
     case "Clouds":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = cloudsDay;
-      } else {
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = cloudsNight;
+      }else {
+        backgroundName = cloudsDay;
       }
       break;
     case "Haze":
@@ -185,29 +188,41 @@ function App() {
     case "Rain":
       if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = rainDay;
-      } else {
+      } 
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = rainNight;
+      }else {
+        backgroundName = rainDay;
       }
       break;
     case "Clear":
       if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = clearDay;
-      } else {
+      } 
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = clearNight;
+      }else {
+        backgroundName = clearDay;
       }
       break;
     case "Drizzle":
       if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = rainDay;
-      } else {
+      } 
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = rainNight;
+      }else {
+        backgroundName = rainDay;
       }
       break;
     case "Snow":
       if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = snowDay;
-      } else {
+      } 
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = snowNight;
+      }else {
+        backgroundName = snowDay;
       }
       break;
     case "Thunderstorm":
@@ -216,13 +231,16 @@ function App() {
     default:
       if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
         backgroundName = cloudsDay;
-      } else {
+      } 
+      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
         backgroundName = cloudsNight;
+      }else {
+        backgroundName = cloudsDay;
       }
   }
   return (
     <div className="App">
-      <div className="w-full h-screen flex flex-col items-center justify-center lg:px-0">
+      <div className="w-full min-h-screen flex flex-col items-center justify-center lg:px-0">
       <video className="w-full h-full object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
         <div className="absolute w-full h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         {errorMsg && (
