@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  IoMdSunny,
-  IoMdRainy,
-  IoMdCloudy,
-  IoMdSnow,
-  IoMdThunderstorm,
   IoMdSearch,
 } from "react-icons/io";
 import {
