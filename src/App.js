@@ -102,7 +102,7 @@ function App() {
         year: data.formatted.slice(0, 4),
         month: data.formatted.slice(5, 7),
         day: data.formatted.slice(8, 10),
-        hour: data.formatted.slice(11, 13),
+        hour:data.formatted.slice(11, 13),
         minute: data.formatted.slice(14, 16),
         countryName: data.countryName,
       };
@@ -173,12 +173,18 @@ function App() {
   // set the background based on the weather
   switch (data.weather[0].main) {
     case "Clouds":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = cloudsDay;
       }
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = cloudsNight;
-      }else {
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = cloudsNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = cloudsDay;
       }
       break;
@@ -186,56 +192,87 @@ function App() {
       backgroundName = hazeDay;
       break;
     case "Rain":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = rainDay;
-      } 
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      }
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = rainNight;
-      }else {
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = rainNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = rainDay;
       }
       break;
     case "Clear":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = clearDay;
-      } 
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      }
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = clearNight;
-      }else {
-        backgroundName = clearDay;
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = clearNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
+        backgroundName = clearDay;  
       }
       break;
     case "Drizzle":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = rainDay;
-      } 
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      }
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = rainNight;
-      }else {
-        backgroundName = rainDay;
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = rainNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
+        backgroundName = rainDay;  
       }
       break;
     case "Snow":
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = snowDay;
-      } 
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      }
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = snowNight;
-      }else {
-        backgroundName = snowDay;
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = snowNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
+        backgroundName = snowDay;  
       }
       break;
     case "Thunderstorm":
       backgroundName = thunderstorm;
       break;
     default:
-      if (dataTime.meridiem === "AM" && dataTime.hour > 7 && dataTime.hour < 12) {
+      if (dataTime.meridiem === "AM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
         backgroundName = cloudsDay;
-      } 
-      if (dataTime.meridiem === "PM" && dataTime.hour > 7 && dataTime.hour < 12 ) {
+      }
+
+      if (dataTime.meridiem === "AM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
         backgroundName = cloudsNight;
-      }else {
-        backgroundName = cloudsDay;
+      }
+
+      if (dataTime.meridiem === "PM" && dataTime.hour > 6 && dataTime.hour < 12 ) {
+        backgroundName = cloudsNight;
+      }
+      if (dataTime.meridiem === "PM" && dataTime.hour > 0 && dataTime.hour <= 6 ) {
+        backgroundName = cloudsDay;  
       }
   }
   return (
