@@ -5,9 +5,6 @@ module.exports = {
         primary: 'Poppins',
       },
       extend: {
-        backgroundImage: {
-          gradientBg: "url('/src/assets/img/bg.png')",
-        },
         keyframes: {
           shake: {
             '0%': {
