@@ -36,84 +36,6 @@ function App() {
   let backgroundName;
   let moth;
 
-const multiply = (a,b) => {
-  let result = 0
-  const positivo = Math.abs(a) === a
-  for (let i = 0; i < Math.abs(a); i++) {
-    result = positivo ? result + b : result - b
-  }return(result)
-}
-const a = multiply(10,-4)
-
-//console.log(a)
-
-const getBiggest = (array) => array.reduce((acc, el) => acc > el ? acc : el)
-const b = getBiggest([1,2,3,0,5,6,7,8,9,10])
-//console.log(b)
-
-const clean = (array) => array.reduce((acc, el) => {
-  if (el){
-    acc.push(el)
-  }return(acc)
-},[])
-
-const c = clean([1,,3,0,,6,7,8,null,10])
-//console.log(c)
-
-const arr = [[1,2], [[3,4], [1,[]]] ]
-
-const flattent = (array) => arr.reduce((acc, el) => acc.concat(el),[])
-
-const d = flattent(arr)
-//console.log(d)
-
-const repited = (str) =>{
-  const lowered = str.toLowerCase()
-  const splitted = lowered.split(" ")
-  const reduced = splitted.reduce((acc, el) => {
-    if (acc[el]){
-      acc[el]++
-    }else{
-      acc[el] = 1
-    }
-    return(acc)
-  },{})
-  return Object.entries(reduced).reduce((acc,el) => acc[1] > el[1] ? acc : el)
-}
-
-const e = repited("This is a Repited word word Test this is a a")
-
-//console.log(e)
-
-const isPalindrome = (str) => {
-  str = str.replace(/\s/g, "")
-  const lowered = str.toLowerCase()
-  const splitted = lowered.split("")
-  const reversed = splitted.reverse()
-  const joined = reversed.join("")
-  return lowered === joined
-}
-
-const f = isPalindrome("Luz azul")
-console.log(f)
-
-const GetMaxMin = (array) => array.reduce((acc, el, index) =>{
-  if(index === 0){
-    acc.max = el
-    acc.min = el
-  }
-  if (acc.max < el) {
-    acc.max = el
-  }
-  if (acc.min > el) {
-    acc.min = el
-  }
-  return acc
-},{max:0,min:0})
-
-const z = GetMaxMin([1,2,-3,10,5,6,7,8,9,10])
-// console.log(z)
-
   
   const handleSearch = (e) => {
     setInputValue(e.target.value);
@@ -351,7 +273,7 @@ const z = GetMaxMin([1,2,-3,10,5,6,7,8,9,10])
   }
   return (
     <div className="App">
-      <div className="w-full min-h-screen flex flex-col items-center justify-center lg:px-0">
+      <div className="w-full max-h-screen flex flex-col items-center justify-center lg:px-0">
       <video className="w-full min-h-screen object-cover" src={backgroundName} autoPlay loop muted defaultMuted playsInline />
         <div className="absolute w-full min-h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         {errorMsg && (
